@@ -2,9 +2,7 @@
 function ilv__Connect () {
   var ilv__wsite = "http://snf-538265.vm.okeanos.grnet.gr";  // afisse to stin grammi 10
   this._ilv__login = ilv__wsite+"/modules/rest/login";	
-  this._ilv__courses = ilv__wsite+"/modules/rest/courses";	
-  this._ilv__user = "admin";
-  this._ilv__passwd = "apostolos";
+  this._ilv__courses = ilv__wsite+"/modules/rest/courses";
 
   
   if (!(localStorage.getItem("uname") === null)) { //Check if there is already a username saved in localStorage.uname
@@ -15,16 +13,19 @@ function ilv__Connect () {
   	$("#loginForm #pass").val(localStorage.pass); //Fill in the #pass input field with the localStorage value
 
   }
-
+  
+  var subject = this;
   $("#loginForm #submit").click(function(event) {
+  	subject._ilv__user = $("#loginForm #uname").val();
+    subject._ilv__passwd = $("#loginForm #pass").val();
   	event.preventDefault(); // Prevent the form submission
-  	localStorage.uname = $("#loginForm #uname").val(); //Save the username to localStorage
-    localStorage.pass = $("#loginForm #pass").val();   //Save the password to localStorage
+  	localStorage.uname = subject._ilv__user; //Save the username to localStorage
+    localStorage.pass = subject._ilv__passwd;   //Save the password to localStorage
+    subject.login();
     $.mobile.loading('hide'); //Hide the jQuery mobile loader that automatically appears
   });
-  
-  
-}
+
+};
 
 
 ilv__Connect.prototype.ilv__getStatecallback = function(data) {  
@@ -32,7 +33,7 @@ ilv__Connect.prototype.ilv__getStatecallback = function(data) {
    	this.ilv__access_token = data.access_token;
    	this.ilv__status = data.status;
 //alert(this.ilv__status);
- }
+};
 
  ilv__Connect.prototype.login = function() {  
    var subject = this;
@@ -56,7 +57,7 @@ var postdata =
             //alert(status);
         }
     });
-	}	 
+	}; 
 
 
  ilv__Connect.prototype.getCourses = function() {  
@@ -79,4 +80,4 @@ var postdata =
             alert(status);
         }
     });
-}
+};

@@ -34,13 +34,13 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/connect.js"></script>
 
-               <script type="text/javascript">
-               $(document).on("pageinit", function() {
-         	 var Con =  new ilv__Connect();
-         	 app.initialize();
- Con.login();
- });
-        </script>
+		<script type="text/javascript">
+			$(document).on("pageinit", function() {
+				var Con = new ilv__Connect();
+				app.initialize();
+				//Con.login(); We not login from ilv_Connect
+			});
+		</script>
 
 <meta name="msapplication-tap-highlight" content="no" />
 <title>Hello World</title>
