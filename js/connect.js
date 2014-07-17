@@ -7,20 +7,20 @@ function ilv__Connect () {
   this._ilv__passwd = "apostolos";
 
   
-  if (!(localStorage.getItem("uname") === null)) {
-  	$("#loginForm #uname").val(localStorage.uname);
+  if (!(localStorage.getItem("uname") === null)) { //Check if there is already a username saved in localStorage.uname
+  	$("#loginForm #uname").val(localStorage.uname);//Fill in the #uname input field with the localStorage value
   }
     
-  if (!(localStorage.getItem("pass") === null)) {
-  	$("#loginForm #pass").val(localStorage.pass);
+  if (!(localStorage.getItem("pass") === null)) { //Check if there is already a username saved in localStorage.pass
+  	$("#loginForm #pass").val(localStorage.pass); //Fill in the #pass input field with the localStorage value
 
   }
 
   $("#loginForm #submit").click(function(event) {
-  	event.preventDefault();
-  	localStorage.uname = $("#loginForm #uname").val();
-    localStorage.pass = $("#loginForm #pass").val();
-    $.mobile.loading('hide');
+  	event.preventDefault(); // Prevent the form submission
+  	localStorage.uname = $("#loginForm #uname").val(); //Save the username to localStorage
+    localStorage.pass = $("#loginForm #pass").val();   //Save the password to localStorage
+    $.mobile.loading('hide'); //Hide the jQuery mobile loader that automatically appears
   });
   
   
