@@ -81,3 +81,26 @@ var postdata =
         }
     });
 };
+
+ilv__Connect.prototype.checkConnect = function() {
+   var subject = this;
+   //periptossi 1
+   $.ajaxSetup({
+       timeout: 1, // Microseconds, for the laughs.  Guaranteed timeout.
+       error: function(request, status, maybe_an_exception_object) {
+       if(status == 'timeout')
+               alert("Internet connection is down!");
+       }
+       });
+
+
+//periptossi 2
+/*
+   online = window.navigator.onLine;
+   if (navigator.onLine) {
+      alert('you are online');
+   } else {
+      alert('you are offline');
+   }
+*/
+};
