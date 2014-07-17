@@ -5,6 +5,25 @@ function ilv__Connect () {
   this._ilv__courses = ilv__wsite+"/modules/rest/courses";	
   this._ilv__user = "admin";
   this._ilv__passwd = "apostolos";
+
+  
+  if (!(localStorage.getItem("uname") === null)) {
+  	$("#loginForm #uname").val(localStorage.uname);
+  }
+    
+  if (!(localStorage.getItem("pass") === null)) {
+  	$("#loginForm #pass").val(localStorage.pass);
+
+  }
+
+  $("#loginForm #submit").click(function(event) {
+  	event.preventDefault();
+  	localStorage.uname = $("#loginForm #uname").val();
+    localStorage.pass = $("#loginForm #pass").val();
+    $.mobile.loading('hide');
+  });
+  
+  
 }
 
 
@@ -29,12 +48,12 @@ var postdata =
     	contentType: "application/json; charset=utf-8",
         dataType: "json",
         success:function(result){
-            alert(JSON.stringify(result));
+            //alert(JSON.stringify(result));
             subject._token=result.access_token;
 	    subject.getCourses();
         },
         error:function(xhr,status,error){
-            alert(status);
+            //alert(status);
         }
     });
 	}	 
@@ -53,7 +72,7 @@ var postdata =
     	contentType: "application/json; charset=utf-8",
         dataType: "json",
         success:function(result){
-            alert(result[0].title);
+            //alert(result[0].title);
             //var _token=result.access_token;
         },
         error:function(xhr,status,error){
