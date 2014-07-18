@@ -108,13 +108,13 @@ ilv__Connect.prototype.checkConnect = function() {
 		timeout : 5000,
 		contentType : "application/json;charset=utf-8",
 		success : function(data) {
-			alert("ok");
+			//alert("ok");
 		},
 		error : function(request) {
 			// alert(request.responseText);
 			// alert(request.status);
 			if (request.status == 0) {
-				alert("papala");
+				//alert("papala");
 			}
 
 		}
