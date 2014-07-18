@@ -77,11 +77,19 @@ ilv__Connect.prototype.getCourses = function() {
 		contentType : "application/json; charset=utf-8",
 		dataType : "json",
 		success : function(result) {
-			var coursesList = "";
+			var coursesList = '<ul data-role="listview">';
+			
+	/*<li><a href="acura.html">Acura</a></li>
+	<li><a href="audi.html">Audi</a></li>
+	<li><a href="bmw.html">BMW</a></li>*/
+
 			$.each(result, function(i, k) {
-				coursesList += '<div>' + k.title + '</div>';
+				coursesList += '<li>' + '<a href="" id="course-'+ k.code +'">'+ k.title + '</a>' + '</li>';
 			});
+			courseList+='</ul>';
 			$("#courseList").html(coursesList);
+			$("#leftpanel1").html(coursesList);
+			$("#leftpanel1 ul").listview();
 			//alert(result[0].title);
 			//var _token=result.access_token;
 		},
