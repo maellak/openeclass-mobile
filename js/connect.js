@@ -77,7 +77,7 @@ ilv__Connect.prototype.getCourses = function() {
 		contentType : "application/json; charset=utf-8",
 		dataType : "json",
 		success : function(result) {
-			var coursesList;
+			var coursesList = "";
 			$.each(result, function(i, k) {
 				coursesList += '<div>' + k.title + '</div>';
 			});
@@ -86,7 +86,7 @@ ilv__Connect.prototype.getCourses = function() {
 			//var _token=result.access_token;
 		},
 		error : function(xhr, status, error) {
-			alert(status);
+			alert("Could not get courses");
 		}
 	});
 };
