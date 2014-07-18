@@ -87,7 +87,7 @@ ilv__Connect.prototype.getCourses = function() {
 				coursesList += '<li>' + '<a href="" id="course-'+ k.code +'">'+ k.title + '</a>' + '</li>';
 			});
 			courseList+='</ul>';
-			$("#courseList").html(coursesList);
+			//$("#courseList").html(coursesList);
 			$("#leftpanel1").html(coursesList);
 			$("#leftpanel1 ul").listview();
 			//alert(result[0].title);
