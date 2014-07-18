@@ -84,12 +84,12 @@ ilv__Connect.prototype.getCourses = function() {
 	<li><a href="bmw.html">BMW</a></li>*/
 
 			$.each(result, function(i, k) {
-				coursesList += '<li>' + '<a href="" id="course-'+ k.code +'">'+ k.title + '</a>' + '</li>';
+				coursesList += '<li>' + '<a href="index.html#kati" id="course-'+ k.code +'">'+ k.title + '</a>' + '</li>';
 			});
 			courseList+='</ul>';
 			//$("#courseList").html(coursesList);
-			$("#leftpanel1").html(coursesList);
-			$("#leftpanel1 ul").listview();
+			$("#malakies").html(coursesList);
+			$("#malakies ul").listview();
 			//alert(result[0].title);
 			//var _token=result.access_token;
 		},
