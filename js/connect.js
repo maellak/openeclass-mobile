@@ -26,10 +26,16 @@ function ilv__Connect() {
 		subject._ilv_action = "announcements";
 		var announcements = subject.getAnnouncements(null);
 		console.log(announcements);
+		$("#page-content").html(JSON.stringify(announcements));
 	});
 
 	$("#forum-btn").click(function() {
 		subject._ilv_action = "forums";
+	});
+	
+	$(".ui-header .logo").click(function() {
+		$("#page-title p span").html("Αρχική Σελίδα");
+		$("#page-content").html('<p><span class="pt13">Η πλατφόρμα <strong>Open eClass</strong> είναι ένα ολοκληρωμένο Σύστημα Διαχείρισης Ηλεκτρονικών Μαθημάτων για την ηλεκτρονική οργάνωση, αποθήκευση και παρουσίαση του εκπαιδευτικού υλικού. Αποτελεί την πρόταση του Ακαδημαϊκού Διαδικτύου GUnet για την υποστήριξη των Υπηρεσιών Ασύγχρονης Τηλεκπαίδευσης. Βασική επιδίωξη της πλατφόρμας είναι η ενσωμάτωση των νέων τεχνολογιών και η εποικοδομητική χρήση του διαδικτύου στην εκπαιδευτική διαδικασία. Βασίζεται στη φιλοσοφία του λογισμικού ανοικτού κώδικα, υποστηρίζεται ενεργά από το GUnet και διανέμεται ελεύθερα.</span></p>');
 	});
 
 
@@ -52,7 +58,12 @@ function ilv__Connect() {
 			courseDetails += "<dt>Κωδικός Μαθήματος</dt>";
 			courseDetails += "<dd>" + $course[0].code + "</dd>";
 			courseDetails += "</dl>";
-			$("#page-content").html(courseDetails);
+			courseDetails += '<div id="lesson-buttons" data-role="controlgroup" data-type="horizontal">'
+								+'<a href="" data-role="button">Ανακοινώσεις</a>'
+								+'<a href="" data-role="button">Αρχεία</a>'
+								+'<a href="" data-role="button">Forum</a>'
+								+'</div>';
+			$("#page-content").html(courseDetails).trigger("create");
 			$("#leftpanel1").panel( "close" );
 		}
 	});
@@ -184,6 +195,7 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 		contentType : "application/json; charset=utf-8",
 		dataType : "json",
 		success : function(result) {
+			console.log(result);
 			return result;
 		},
 		error : function(xhr, status, error) {
