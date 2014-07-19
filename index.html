@@ -36,7 +36,7 @@ under the License.
     <script type="text/javascript">
 		$(document).on("pageinit", function() {
 			Con = new ilv__Connect();
-			Con.checkConnect();
+			//Con.checkConnect();
 			Con.getCourses();
 			app.initialize();
 			//Con.login(); We are not login from ilv_Connect
@@ -53,7 +53,7 @@ under the License.
       <br>
       <div class="ui-grid-c">
         <div class="ui-block">
-          <div class="ui-bar ui-bar-a">
+          <div id="page-title" class="ui-bar ui-bar-a">
             <p>
               <span class="pt14">Αρχική Σελίδα</span>
             </p>
@@ -61,7 +61,7 @@ under the License.
         </div>
       </div>
 
-      <div class="generalDescription">
+      <div id="page-content" class="generalDescription">
         <p>
           <span class="pt13">Η πλατφόρμα <strong>Open eClass</strong> είναι ένα ολοκληρωμένο Σύστημα Διαχείρισης Ηλεκτρονικών Μαθημάτων για την ηλεκτρονική οργάνωση, αποθήκευση και παρουσίαση του εκπαιδευτικού υλικού. Αποτελεί την πρόταση του Ακαδημαϊκού Διαδικτύου GUnet για την υποστήριξη των Υπηρεσιών Ασύγχρονης Τηλεκπαίδευσης. Βασική επιδίωξη της πλατφόρμας είναι η ενσωμάτωση των νέων τεχνολογιών και η εποικοδομητική χρήση του διαδικτύου στην εκπαιδευτική διαδικασία. Βασίζεται στη φιλοσοφία του λογισμικού ανοικτού κώδικα, υποστηρίζεται ενεργά από το GUnet και διανέμεται ελεύθερα.</span>
         </p>
@@ -115,7 +115,7 @@ under the License.
           </li>
           </li>
           <li class="ui-block-c">
-            <a id="announcements-btn" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini" href="#leftpanel1">Ανακοινώσεις</a>
+            <a id="announcements-btn" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini" href="">Ανακοινώσεις</a>
 
           </li>
           <li class="ui-block-d">
