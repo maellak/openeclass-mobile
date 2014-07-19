@@ -3,6 +3,7 @@ function ilv__Connect() {
 	// afisse to stin grammi 10
 	this._ilv__login = ilv__wsite + "/modules/rest/login";
 	this._ilv__courses = ilv__wsite + "/modules/rest/courses";
+	
 
 	if (!(localStorage.getItem("uname") === null)) {//Check if there is already a username saved in localStorage.uname
 		$("#loginForm #uname").val(localStorage.uname);
@@ -84,7 +85,7 @@ ilv__Connect.prototype.getCourses = function() {
 	<li><a href="bmw.html">BMW</a></li>*/
 
 			$.each(result, function(i, k) {
-				coursesList += '<li>' + '<a href="index.html#kati" id="course-'+ k.code +'">'+ k.title + '</a>' + '</li>';
+				coursesList += '<li>' + '<a id="course-'+ k.code +'">'+ k.title + '</a>' + '</li>';
 			});
 			courseList+='</ul>';
 			//$("#courseList").html(coursesList);
@@ -117,6 +118,41 @@ ilv__Connect.prototype.checkConnect = function() {
 				//alert("papala");
 			}
 
+		}
+	});
+};
+
+
+ilv__Connect.prototype.getAnouncments= function(course) {
+	var subject = this;
+	//alert(this._token);
+	var postdata = {
+		"access_token" : this._token
+	};
+	$.ajax({
+		url : "http://snf-538265.vm.okeanos.grnet.gr" + "/modules/rest/courses/" + course + "/announcements" ,
+		type : "GET",
+		crossDomain : true,
+		data : postdata,
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		success : function(result) {
+			var announcementsList = '<ul data-role="listview">';
+			
+	
+
+			$.each(result, function(i, k) {
+				announcementsList += '<li>' + '<a id="announcements-'+ k.code +'">'+ k.title + '</a>' + '</li>';
+			});
+			announcementsList+='</ul>';
+			//$("#announcements").html(announcementsList);
+			$("#malakies2").html(announcementsList);
+			$("#malakies2 ul").listview();
+			//alert(result[0].title);
+			//var _token=result.access_token;
+		},
+		error : function(xhr, status, error) {
+			alert("Could not get courses");
 		}
 	});
 };
