@@ -87,7 +87,7 @@ ilv__Connect.prototype.getCourses = function() {
 			$.each(result, function(i, k) {
 				coursesList += '<li>' + '<a id="course-'+ k.code +'">'+ k.title + '</a>' + '</li>';
 			});
-			courseList+='</ul>';
+			coursesList+='</ul>';
 			//$("#courseList").html(coursesList);
 			$("#malakies").html(coursesList);
 			$("#malakies ul").listview();
