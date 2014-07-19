@@ -14,8 +14,19 @@
 }
 
 .closeButton {
-	vertical-align:bottom;
-	
-	
-	
-	}
+	text-align:center;
+}
+
+.generalDescription {
+    text-align: justify;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
+.pt14 {
+    font-size: 14pt;
+}
+
+.pt13 {
+    font-size: 13pt;
+}
