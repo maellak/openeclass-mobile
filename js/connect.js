@@ -60,9 +60,9 @@ function ilv__Connect() {
 			courseDetails += "<dd>" + $course[0].code + "</dd>";
 			courseDetails += "</dl>";
 			courseDetails += '<div id="lesson-buttons" data-role="controlgroup" data-type="horizontal">'
-								+'<a class="an-button" id="an-'+ $course[0].id+'" href="" data-role="button">Ανακοινώσεις</a>'
-								+'<a href="" data-role="button">Αρχεία</a>'
-								+'<a href="" data-role="button">Forum</a>'
+								+'<a  id="ann-'+ $course[0].id+'"  href="" data-role="button">Ανακοινώσεις</a>'
+								+'<a  id="doc-'+ $course[0].id+'"  href="" data-role="button">Αρχεία</a>'
+								+'<a  id="for-'+ $course[0].id+'"  href="" data-role="button">Forum</a>'
 								+'</div>';
 			$("#page-content").html(courseDetails).trigger("create");
 			$("#leftpanel1").panel( "close" );
@@ -70,8 +70,20 @@ function ilv__Connect() {
 	});
 	
 	$("#page-content").on("click", "a", function() {
-		var clickedbutton = $(this).attr("id").substring(3);
-		subject.getAnnouncements(clickedbutton);
+	        if( $(this).attr("id").substring(0,4)=="ann-"){	
+				var clickedbutton = $(this).attr("id").substring(4);
+				subject.getAnnouncements(clickedbutton);
+			}	
+			else if( $(this).attr("id").substring(0,4)=="doc-"){
+				var clickedbutton = $(this).attr("id").substring(4);
+				//subject.getDocuments(clickedbutton);
+				alert("αρχεία");
+			}
+			else{
+				var clickedbutton = $(this).attr("id").substring(4);
+				//subject.getForum(clickedbutton);
+				alert("forum");
+			}
 		
 		
 	});
@@ -205,8 +217,13 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 		success : function(result) {
 			announcementList = '<div id="announcements">';
 			$.each(result, function(i, k) {
-				announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.courseTitle+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
-			});
+				if (course === null) {
+					announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.courseTitle+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
+				} else {
+					announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.title+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
+		
+				}
+					});
 			announcementList += "</div>";
 			$("#page-content").html(announcementList).trigger("create");
 				
