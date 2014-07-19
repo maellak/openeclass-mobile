@@ -6,6 +6,7 @@ function ilv__Connect() {
 	this._ilv__courselist = "";
 	this._ilv_action = "";
 	this._ilv__token ="";
+	this._ilv__enrolledcourse ="";
 
 	if (!(localStorage.getItem("uname") === null)) {//Check if there is already a username saved in localStorage.uname
 		$("#loginForm #uname").val(localStorage.uname);
@@ -48,6 +49,7 @@ function ilv__Connect() {
 			    return obj.code === clickedCourse;
 			});
 			console.log($course);
+			subject._ilv__enrolledcourse=$course[0].title;
 			$("#page-title p span").html($course[0].title);
 			var courseDetails = "<dl>";
 			courseDetails += "<dt>Διδάσκοντας</dt>";
@@ -220,7 +222,7 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 				if (course === null) {
 					announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.courseTitle+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
 				} else {
-					announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.title+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
+					announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +subject._ilv__enrolledcourse+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
 		
 				}
 					});
