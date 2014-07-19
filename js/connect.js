@@ -3,6 +3,7 @@ function ilv__Connect() {
 	// afisse to stin grammi 10
 	this._ilv__login = ilv__wsite + "/modules/rest/login";
 	this._ilv__courses = ilv__wsite + "/modules/rest/courses";
+	this._ilv_action = "";
 	
 
 	if (!(localStorage.getItem("uname") === null)) {//Check if there is already a username saved in localStorage.uname
@@ -13,10 +14,21 @@ function ilv__Connect() {
 	if (!(localStorage.getItem("pass") === null)) {//Check if there is already a username saved in localStorage.pass
 		$("#loginForm #pass").val(localStorage.pass);
 		//Fill in the #pass input field with the localStorage value
-
 	}
-
+	
 	var subject = this;
+	$("#courses-btn").click(function() {
+		subject._ilv_action = "courses";
+	});
+	
+	$("#announcements-btn").click(function() {
+		subject._ilv_action = "announcements";
+	});
+	
+	$("#forum-btn").click(function() {
+		subject._ilv_action = "forums";
+	});
+	
 	$("#loginForm #submit").click(function(event) {
 		subject._ilv__user = $("#loginForm #uname").val();
 		subject._ilv__passwd = $("#loginForm #pass").val();
