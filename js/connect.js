@@ -24,9 +24,7 @@ function ilv__Connect() {
 
 	$("#announcements-btn").click(function() {
 		subject._ilv_action = "announcements";
-		var announcements = subject.getAnnouncements(null);
-		console.log(announcements);
-		$("#page-content").html(JSON.stringify(announcements));
+		subject.getAnnouncements(null);
 	});
 
 	$("#forum-btn").click(function() {
@@ -195,8 +193,13 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 		contentType : "application/json; charset=utf-8",
 		dataType : "json",
 		success : function(result) {
-			console.log(result);
-			return result;
+			announcementList = '<div id="announcements">';
+			$.each(result, function(i, k) {
+				announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.courseTitle+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
+			});
+			announcementList += "</div>";
+			$("#page-content").html(announcementList).trigger("create");
+				
 		},
 		error : function(xhr, status, error) {
 			alert("Could not get announcements");
