@@ -26,11 +26,13 @@ function ilv__Connect() {
 	$("#page-title p span").html("Ανακοινώσεις");
 		subject._ilv_action = "announcements";
 		subject.getAnnouncements(null);
+		
 	});
 
 	$("#forum-btn").click(function() {
 		subject._ilv_action = "forums";
 	});
+	
 	
 	$(".ui-header .logo").click(function() {
 		$("#page-title p span").html("Αρχική Σελίδα");
@@ -58,13 +60,20 @@ function ilv__Connect() {
 			courseDetails += "<dd>" + $course[0].code + "</dd>";
 			courseDetails += "</dl>";
 			courseDetails += '<div id="lesson-buttons" data-role="controlgroup" data-type="horizontal">'
-								+'<a href="" data-role="button">Ανακοινώσεις</a>'
+								+'<a class="an-button" id="an-'+ $course[0].id+'" href="" data-role="button">Ανακοινώσεις</a>'
 								+'<a href="" data-role="button">Αρχεία</a>'
 								+'<a href="" data-role="button">Forum</a>'
 								+'</div>';
 			$("#page-content").html(courseDetails).trigger("create");
 			$("#leftpanel1").panel( "close" );
 		}
+	});
+	
+	$("#page-content").on("click", "a", function() {
+		var clickedbutton = $(this).attr("id").substring(3);
+		subject.getAnnouncements(clickedbutton);
+		
+		
 	});
 
 	$("#loginForm #submit").click(function(event) {
