@@ -89,8 +89,8 @@ ilv__Connect.prototype.getCourses = function() {
 			});
 			coursesList+='</ul>';
 			//$("#courseList").html(coursesList);
-			$("#malakies").html(coursesList);
-			$("#malakies ul").listview();
+			$("#courses-list").html(coursesList);
+			$("#courses-list ul").listview();
 			//alert(result[0].title);
 			//var _token=result.access_token;
 		},
