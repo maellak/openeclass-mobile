@@ -9,16 +9,22 @@ function ilv__Connect() {
 	this._ilv__enrolledcourse ="";
 
 	if (!(localStorage.getItem("uname") === null)) {//Check if there is already a username saved in localStorage.uname
-		$("#loginForm #uname").val(localStorage.uname);
+		$("#popupLogin #uname").val(localStorage.uname);
 		//Fill in the #uname input field with the localStorage value
 	}
 
 	if (!(localStorage.getItem("pass") === null)) {//Check if there is already a username saved in localStorage.pass
-		$("#loginForm #pass").val(localStorage.pass);
+		$("#popupLogin #pass").val(localStorage.pass);
 		//Fill in the #pass input field with the localStorage value
 	}
-
-	$("#loginForm #url").val('http://snf-538265.vm.okeanos.grnet.gr');
+	
+	if (!(localStorage.getItem("url") === null)) {//Check if there is already a username saved in localStorage.pass
+		$("#popupLogin #url").val(localStorage.url);
+		//Fill in the #pass input field with the localStorage value
+	} else {
+		localStorage.url = "http://snf-538265.vm.okeanos.grnet.gr";
+		$("#popupLogin #url").val('http://snf-538265.vm.okeanos.grnet.gr');
+	}
 
 	var subject = this;
 	$("#courses-btn").click(function() {
