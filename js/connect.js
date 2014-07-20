@@ -17,6 +17,13 @@ function ilv__Connect() {
 		$("#loginForm #pass").val(localStorage.pass);
 		//Fill in the #pass input field with the localStorage value
 	}
+	
+	if (!(localStorage.getItem("url") === null)) {//Check if there is already a username saved in localStorage.pass
+		$("#loginForm #url").val(localStorage.url);
+		//Fill in the #pass input field with the localStorage value
+	} else {
+		$("#loginForm #url").val('http://snf-538265.vm.okeanos.grnet.gr');
+	}
 
 	var subject = this;
 	$("#courses-btn").click(function() {
@@ -93,6 +100,7 @@ function ilv__Connect() {
 	$("#popupLogin #submit").click(function(event) {
 		subject._ilv__user = $("#popupLogin #uname").val();
 		subject._ilv__passwd = $("#popupLogin #pass").val();
+		subject._ilv__wsite = $("#popupLogin #url").val();
 		event.preventDefault();
 		// Prevent the form submission
 		localStorage.uname = subject._ilv__user;
