@@ -41,34 +41,25 @@ function ilv__Connect() {
 	});
 
 
-	$("#courses-list").on("click", "a", function() {
+	$("#courses-page .page-content").on("click", "a", function() {
 		var clickedCourse = $(this).attr("id").substring(7);
 		//console.log(clickedCourse);
-		if (subject._ilv_action == "courses") {
 			$course = $.grep(subject._ilv__courselist, function(obj) {
 			    return obj.code === clickedCourse;
 			});
-			console.log($course);
 			subject._ilv__enrolledcourse=$course[0].title;
-			$("#page-title p span").html($course[0].title);
-			var courseDetails = "<dl>";
-			courseDetails += "<dt>Διδάσκοντας</dt>";
-			courseDetails += "<dd>" + $course[0].prof_names + "</dd>";
-			courseDetails += "<dt>Γλώσσα</dt>";
-			courseDetails += "<dd>" + $course[0].lang + "</dd>";
-			courseDetails += "<dt>Λέξεις Κλειδιά</dt>";
-			courseDetails += "<dd>" + $course[0].keywords + "</dd>";
-			courseDetails += "<dt>Κωδικός Μαθήματος</dt>";
-			courseDetails += "<dd>" + $course[0].code + "</dd>";
-			courseDetails += "</dl>";
-			courseDetails += '<div id="lesson-buttons" data-role="controlgroup" data-type="horizontal">'
-								+'<a  id="ann-'+ $course[0].id+'"  href="" data-role="button">Ανακοινώσεις</a>'
-								+'<a  id="doc-'+ $course[0].id+'"  href="" data-role="button">Αρχεία</a>'
-								+'<a  id="for-'+ $course[0].id+'"  href="" data-role="button">Forum</a>'
-								+'</div>';
-			$("#page-content").html(courseDetails).trigger("create");
-			$("#leftpanel1").panel( "close" );
-		}
+			
+			$("#course-details-page .instructor").html($course[0].prof_names);
+			$("#course-details-page .language").html($course[0].lang);
+			$("#course-details-page .keywords").html($course[0].keywords);
+			$("#course-details-page .code").html($course[0].code);
+			$("#course-details-page h1").html($course[0].title);
+			$("#course-details-page .ann-button").attr("id", "ann-" + $course[0].id);
+			$("#course-details-page .file-button").attr("id", "doc-" + $course[0].id);
+			$("#course-details-page .forum-button").attr("id", "for-" + $course[0].id);
+			
+			$("#course-details-page").trigger("create");
+			$.mobile.changePage( "#course-details-page", { transition: "slideup" });
 	});
 	
 	$("#page-content").on("click", "a", function() {
@@ -163,8 +154,8 @@ ilv__Connect.prototype.getCourses = function() {
 			});
 			coursesList += '</ul>';
 			//$("#courseList").html(coursesList);
-			$("#courses-list").html(coursesList);
-			$("#courses-list ul").listview();
+			$("#courses-page .page-content").html(coursesList);
+			$("#courses-page .page-content ul").listview();
 			//alert(result[0].title);
 			//var _token=result.access_token;
 		},

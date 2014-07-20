@@ -53,3 +53,7 @@ dd {
 #announcements {
 	font-size: 16px;
 } 
+
+.page-content {
+  padding: 1em;
+}
