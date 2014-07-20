@@ -1,0 +1,107 @@
+#login-btn {
+  height:2em;
+  color:blue;
+  font-size:1.2em;
+}
+
+#courses-btn {
+  height:2em;
+  color:blue;
+  font-size:1.2em;
+}
+
+#announcements-btn {
+  height:2em;
+  color:blue;
+  font-size:1.2em;
+}
+
+#forum-btn {
+  height:2em;
+  color:blue;
+  font-size:1.2em;
+}
+
+#leftpanel1 {
+  width:100%;
+}
+
+#rightpanel1 {
+  width:100%;
+}
+
+#submit {
+  margin-left: 30%;
+  width:40%;
+}
+
+.closeButton {
+  margin-top: 15%;
+}
+
+.divScroll {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    resize: vertical;
+    height: 300px;
+    min-height: 100px;
+    max-height: 500px;
+    width:80%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFFACD;
+}
+
+.closeButton {
+	text-align:center;
+}
+
+.generalDescription {
+    /*text-align: justify;*/
+    margin:auto;
+    padding:0 10px;
+    max-width:600px;
+}
+
+.pt14 {
+    font-size: 14pt;
+}
+
+.pt13 {
+    font-size: 13pt;
+}
+
+dl {
+	font-size:16px;
+}
+
+dt {
+    background-color: #ddd;
+    font-weight: normal;
+    margin: 35px 0 15px;
+}
+
+dd {
+    margin-bottom: 10px;
+}
+
+#lesson-buttons {
+	margin-top: 30px;
+}
+
+#announcements {
+	font-size: 16px;
+<<<<<<< HEAD
+}
+
+.announcement-read {
+    background-color: #f6f6f6;
+    border-color: #ddd;
+    color: #333;
+    text-shadow: 0 1px 0 #f3f3f3;
+}
+=======
+} 
+>>>>>>> 06486ee0509bdd55bd61ec2419dae76d1a19a2fc
