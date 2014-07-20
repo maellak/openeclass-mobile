@@ -245,7 +245,8 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 				   	var clickedAnnouncement = $(this).attr("id").substring(13);
 				   	//alert(clickedCourse);
 				   	subject.sendAnnouncementRead(clickedAnnouncement);
-				   	$(this).children("h4 a").addClass("announcment-read");
+				   	console.log(this);
+				   	$(this).children("a").addClass("announcement-read");
 				   }
 				});
 				
@@ -258,7 +259,7 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 
 ilv__Connect.prototype.sendAnnouncementRead = function(annID) {
 	var subject = this;
-	var annUrl = subject._ilv__wsite + "/courses/announcements/" + annID + "/read?access_token="+ subject._ilv__token;
+	var annUrl = subject._ilv__wsite + "/modules/rest/courses/announcements/" + annID + "/read?access_token="+ subject._ilv__token;
 	//alert (annUrl);
 	var postdata = {
 		//"access_token" : subject._ilv__token
