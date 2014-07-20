@@ -70,6 +70,7 @@ function ilv__Connect() {
 			$("#leftpanel1").panel( "close" );
 		}
 	});
+
 	
 	$("#page-content").on("click", "a", function() {
 	        if( $(this).attr("id").substring(0,4)=="ann-"){	
@@ -219,22 +220,63 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 		success : function(result) {
 			announcementList = '<div id="announcements">';
 			$.each(result, function(i, k) {
+				console.log(k);
+				if (k.visible == null) {
+					k.visible = 0;
+				}
+				
+				datatheme = "b";
+				if (k.visible ==1) {
+					datatheme = "a";
+				}
+				
+				
 				if (course === null) {
-					announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.courseTitle+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
+					announcementList += '<div class="announcement-item" id="announcement-'+ k.id  + '" data-role="collapsible" data-theme="'+ datatheme +'" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.courseTitle+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
 				} else {
-					announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +subject._ilv__enrolledcourse+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
+					announcementList += '<div class="announcement-item" id="announcement-'+ k.id  + '" data-role="collapsible" data-theme="'+ datatheme +'" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +subject._ilv__enrolledcourse+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
 		
 				}
 					});
 			announcementList += "</div>";
 			$("#page-content").html(announcementList).trigger("create");
+			$("#page-content .announcement-item").collapsible({
+				   expand: function(event, ui) {
+				   	var clickedAnnouncement = $(this).attr("id").substring(13);
+				   	//alert(clickedCourse);
+				   	subject.sendAnnouncementRead(clickedAnnouncement);
+				   	$(this).children("h4 a").addClass("announcment-read");
+				   }
+				});
 				
 		},
 		error : function(xhr, status, error) {
 			alert("Could not get announcements");
 		}
 	});
-}; 
+};
+
+ilv__Connect.prototype.sendAnnouncementRead = function(annID) {
+	var subject = this;
+	var annUrl = subject._ilv__wsite + "/courses/announcements/" + annID + "/read?access_token="+ subject._ilv__token;
+	//alert (annUrl);
+	var postdata = {
+		//"access_token" : subject._ilv__token
+	};
+	$.ajax({
+		url : annUrl,
+		type : "POST",
+		crossDomain : true,
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		success : function(result) {
+
+		},
+		error : function(xhr, status, error) {
+			alert("Could not mark announcement as read");
+		}
+	});
+};
 
 ilv__Connect.prototype.getDocuments = function(course) {
 	var subject = this;
@@ -266,4 +308,4 @@ ilv__Connect.prototype.getDocuments = function(course) {
 			alert("Could not get announcements");
 		}
 	});
-}; 
+};
