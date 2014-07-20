@@ -6,6 +6,7 @@ function ilv__Connect() {
 	this._ilv__courselist = "";
 	this._ilv_action = "";
 	this._ilv__token ="";
+	this._ilv__enrolledcourse ="";
 
 	if (!(localStorage.getItem("uname") === null)) {//Check if there is already a username saved in localStorage.uname
 		$("#loginForm #uname").val(localStorage.uname);
@@ -26,11 +27,13 @@ function ilv__Connect() {
 	$("#page-title p span").html("Ανακοινώσεις");
 		subject._ilv_action = "announcements";
 		subject.getAnnouncements(null);
+		
 	});
 
 	$("#forum-btn").click(function() {
 		subject._ilv_action = "forums";
 	});
+	
 	
 	$(".ui-header .logo").click(function() {
 		$("#page-title p span").html("Αρχική Σελίδα");
@@ -46,6 +49,7 @@ function ilv__Connect() {
 			    return obj.code === clickedCourse;
 			});
 			console.log($course);
+			subject._ilv__enrolledcourse=$course[0].title;
 			$("#page-title p span").html($course[0].title);
 			var courseDetails = "<dl>";
 			courseDetails += "<dt>Διδάσκοντας</dt>";
@@ -58,13 +62,32 @@ function ilv__Connect() {
 			courseDetails += "<dd>" + $course[0].code + "</dd>";
 			courseDetails += "</dl>";
 			courseDetails += '<div id="lesson-buttons" data-role="controlgroup" data-type="horizontal">'
-								+'<a href="" data-role="button">Ανακοινώσεις</a>'
-								+'<a href="" data-role="button">Αρχεία</a>'
-								+'<a href="" data-role="button">Forum</a>'
+								+'<a  id="ann-'+ $course[0].id+'"  href="" data-role="button">Ανακοινώσεις</a>'
+								+'<a  id="doc-'+ $course[0].id+'"  href="" data-role="button">Αρχεία</a>'
+								+'<a  id="for-'+ $course[0].id+'"  href="" data-role="button">Forum</a>'
 								+'</div>';
 			$("#page-content").html(courseDetails).trigger("create");
 			$("#leftpanel1").panel( "close" );
 		}
+	});
+	
+	$("#page-content").on("click", "a", function() {
+	        if( $(this).attr("id").substring(0,4)=="ann-"){	
+				var clickedbutton = $(this).attr("id").substring(4);
+				subject.getAnnouncements(clickedbutton);
+			}	
+			else if( $(this).attr("id").substring(0,4)=="doc-"){
+				var clickedbutton = $(this).attr("id").substring(4);
+				subject.getDocuments(clickedbutton);
+				//alert("αρχεία");
+			}
+			else{
+				var clickedbutton = $(this).attr("id").substring(4);
+				//subject.getForum(clickedbutton);
+				alert("forum");
+			}
+		
+		
 	});
 
 	$("#popupLogin #submit").click(function(event) {
@@ -197,10 +220,47 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 		success : function(result) {
 			announcementList = '<div id="announcements">';
 			$.each(result, function(i, k) {
-				announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.courseTitle+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
-			});
+				if (course === null) {
+					announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.courseTitle+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
+				} else {
+					announcementList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +subject._ilv__enrolledcourse+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
+		
+				}
+					});
 			announcementList += "</div>";
 			$("#page-content").html(announcementList).trigger("create");
+				
+		},
+		error : function(xhr, status, error) {
+			alert("Could not get announcements");
+		}
+	});
+}; 
+
+ilv__Connect.prototype.getDocuments = function(course) {
+	var subject = this;
+	var annUrl = subject._ilv__wsite + "/modules/rest/courses/" + course + "/documents";
+	
+	//alert(this._token);
+	var postdata = {
+		"access_token" : subject._ilv__token
+	};
+	$.ajax({
+		url : annUrl,
+		type : "GET",
+		crossDomain : true,
+		data : postdata,
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		success : function(result) {
+			documentList = '<div id="announcements">';
+			$.each(result, function(i, k) {
+				
+					documentList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Αρχείο</dt><dd>' +k.filename+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Δημιουργός</dt><dd>' + k.creator + '</dd><dt>Σχόλια</dt><dd>' + k.comment + '</dd><dt>Κατέβασμα</dt><dd><a href="'+ subject._ilv__wsite+ '/' + k.path + '">'+ k.path +'</a></dd></div>';
+				
+					});
+			documentList += "</div>";
+			$("#page-content").html(documentList).trigger("create");
 				
 		},
 		error : function(xhr, status, error) {
