@@ -17,14 +17,8 @@ function ilv__Connect() {
 		$("#loginForm #pass").val(localStorage.pass);
 		//Fill in the #pass input field with the localStorage value
 	}
-	
-	if (!(localStorage.getItem("url") === null)) {//Check if there is already a username saved in localStorage.pass
-		$("#loginForm #url").val(localStorage.url);
-		//Fill in the #pass input field with the localStorage value
-	} else {
-		localStorage.url = "http://snf-538265.vm.okeanos.grnet.gr";
-		$("#loginForm #url").val('http://snf-538265.vm.okeanos.grnet.gr');
-	}
+
+	$("#loginForm #url").val('http://snf-538265.vm.okeanos.grnet.gr');
 
 	var subject = this;
 	$("#courses-btn").click(function() {
