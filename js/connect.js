@@ -306,9 +306,9 @@ ilv__Connect.prototype.getDocuments = function(course) {
 		success : function(result) {
 			documentList = '<div id="announcements">';
 			$.each(result, function(i, k) {
-				
+				if (k.title) {
 					documentList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Αρχείο</dt><dd>' +k.filename+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Δημιουργός</dt><dd>' + k.creator + '</dd><dt>Σχόλια</dt><dd>' + k.comment + '</dd><dt>Μεταφόρτωση</dt><dd><a href="#"  onclick="window.open(\'https://docs.google.com/viewer?url='+ subject._ilv__wsite+ '/' + k.path +'&embedded=true\', \'_blank\', \'location=yes\');">'+ k.path +'</a></dd></div>';
-				
+				}
 					});
 			documentList += "</div>";
 			$("#page-content").html(documentList).trigger("create");
