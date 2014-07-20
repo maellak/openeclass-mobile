@@ -1,3 +1,44 @@
+#login-btn {
+  height:2em;
+  color:blue;
+  font-size:1.2em;
+}
+
+#courses-btn {
+  height:2em;
+  color:blue;
+  font-size:1.2em;
+}
+
+#announcements-btn {
+  height:2em;
+  color:blue;
+  font-size:1.2em;
+}
+
+#forum-btn {
+  height:2em;
+  color:blue;
+  font-size:1.2em;
+}
+
+#leftpanel1 {
+  width:100%;
+}
+
+#rightpanel1 {
+  width:100%;
+}
+
+#submit {
+  margin-left: 30%;
+  width:40%;
+}
+
+.closeButton {
+  margin-top: 15%;
+}
+
 .divScroll {
     overflow-y: scroll;
     overflow-x: hidden;
@@ -52,13 +93,4 @@ dd {
 
 #announcements {
 	font-size: 16px;
-}
-
-.float_right {
-    float : right;
-}
-
-.popup_login_window {
-    padding : 20px 20px;
-}
-   
+} 
