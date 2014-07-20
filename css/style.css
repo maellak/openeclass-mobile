@@ -60,3 +60,13 @@ dd {
     color: #333;
     text-shadow: 0 1px 0 #f3f3f3;
 }
+
+
+.float_right {
+    float : right;
+}
+
+.popup_login_window {
+    padding : 20px 20px;
+}
+   

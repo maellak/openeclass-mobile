@@ -70,7 +70,6 @@ function ilv__Connect() {
 			$("#leftpanel1").panel( "close" );
 		}
 	});
-
 	
 	$("#page-content").on("click", "a", function() {
 	        if( $(this).attr("id").substring(0,4)=="ann-"){	
