@@ -255,7 +255,7 @@ ilv__Connect.prototype.getDocuments = function(course) {
 			documentList = '<div id="announcements">';
 			$.each(result, function(i, k) {
 				
-					documentList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Αρχείο</dt><dd>' +k.filename+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Δημιουργός</dt><dd>' + k.creator + '</dd><dt>Σχόλια</dt><dd>' + k.comment + '</dd><dt>Κατέβασμα</dt><dd>' + k.path + '</dd></div>';
+					documentList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Αρχείο</dt><dd>' +k.filename+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Δημιουργός</dt><dd>' + k.creator + '</dd><dt>Σχόλια</dt><dd>' + k.comment + '</dd><dt>Κατέβασμα</dt><dd><a href="'+ subject._ilv__wsite+ '/' + k.path + '">'+ k.path +'</a></dd></div>';
 				
 					});
 			documentList += "</div>";
