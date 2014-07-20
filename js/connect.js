@@ -267,4 +267,32 @@ ilv__Connect.prototype.getDocuments = function(course) {
 			alert("Could not get announcements");
 		}
 	});
-}; 
+};
+
+ilv__Connect.prototype.getForum = function(course) {
+  var subject = this;
+  var forumurl = subject._ilv__wsite + "/modules/rest/courses/" + course + "/forums"
+  var postdata = {
+      "access_token" : subject._ilv__token
+    };
+  alert(course);
+  $.ajax({
+    url : forumurl,
+    type : "GET",
+    crossDomain : true,
+    data : postdata,
+    contentType : "application/json; charset=utf-8",
+    dataType : "json",
+    success : function(result) {
+      forumList = '<div id="forums">';
+      $.each(result, function(i, k) {
+        forumList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.name +'</h4></div>';
+        });
+      forumList+='</div>';
+      $("#page-content").html(forumList).trigger("create");
+    },
+    error : function(xhr, status, error) {
+      alert("Could not get forums");
+    }
+  });
+};
