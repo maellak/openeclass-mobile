@@ -1,0 +1,68 @@
+.divScroll {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    resize: vertical;
+    height: 300px;
+    min-height: 100px;
+    max-height: 500px;
+    width:80%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFFACD;
+}
+
+.closeButton {
+	text-align:center;
+}
+
+.generalDescription {
+    /*text-align: justify;*/
+    margin:auto;
+    padding:0 10px;
+    max-width:600px;
+}
+
+.pt14 {
+    font-size: 14pt;
+}
+
+.pt13 {
+    font-size: 13pt;
+}
+
+dl {
+	font-size:16px;
+}
+
+dt {
+    background-color: #ddd;
+    font-weight: normal;
+    margin: 35px 0 15px;
+}
+
+dd {
+    margin-bottom: 10px;
+}
+
+#lesson-buttons {
+	margin-top: 30px;
+}
+
+#announcements {
+	font-size: 16px;
+}
+
+.float_right {
+    float : right;
+}
+
+.popup_login_window {
+    padding : 20px 20px;
+}
+
+.vertical_middle {
+    vertical-align : middle;
+}
+   

@@ -53,7 +53,7 @@ under the License.
       <br>
       <div class="ui-grid-c">
         <div class="ui-block">
-          <div id="page-title" class="ui-bar ui-bar-a">
+          <div id="page-title" class="ui-bar ui-bar-a vertical_middle">
               <span class="pt14">Αρχική Σελίδα</span>
               <span class="float_right">
                 <a href="#popupLogin" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-check ui-btn-icon-left ui-btn-a" data-transition="pop">Σύνδεση χρήστη</a>
