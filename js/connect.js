@@ -78,8 +78,8 @@ function ilv__Connect() {
 			}	
 			else if( $(this).attr("id").substring(0,4)=="doc-"){
 				var clickedbutton = $(this).attr("id").substring(4);
-				//subject.getDocuments(clickedbutton);
-				alert("αρχεία");
+				subject.getDocuments(clickedbutton);
+				//alert("αρχεία");
 			}
 			else{
 				var clickedbutton = $(this).attr("id").substring(4);
@@ -228,6 +228,38 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 					});
 			announcementList += "</div>";
 			$("#page-content").html(announcementList).trigger("create");
+				
+		},
+		error : function(xhr, status, error) {
+			alert("Could not get announcements");
+		}
+	});
+}; 
+
+ilv__Connect.prototype.getDocuments = function(course) {
+	var subject = this;
+	var annUrl = subject._ilv__wsite + "/modules/rest/courses/" + course + "/documents";
+	
+	//alert(this._token);
+	var postdata = {
+		"access_token" : subject._ilv__token
+	};
+	$.ajax({
+		url : annUrl,
+		type : "GET",
+		crossDomain : true,
+		data : postdata,
+		contentType : "application/json; charset=utf-8",
+		dataType : "json",
+		success : function(result) {
+			documentList = '<div id="announcements">';
+			$.each(result, function(i, k) {
+				
+					documentList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.title +'</h4><dt>Αρχείο</dt><dd>' +k.filename+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Δημιουργός</dt><dd>' + k.creator + '</dd><dt>Σχόλια</dt><dd>' + k.comment + '</dd><dt>Κατέβασμα</dt><dd>' + k.path + '</dd></div>';
+				
+					});
+			documentList += "</div>";
+			$("#page-content").html(documentList).trigger("create");
 				
 		},
 		error : function(xhr, status, error) {
