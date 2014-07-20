@@ -38,7 +38,7 @@ under the License.
         Con = new ilv__Connect();
         //Con.checkConnect();
         $("[data-role='navbar']").navbar();
-        $("[data-role='header'], [data-role='footer']").toolbar();
+        $("body > [data-role='header'], body > [data-role='footer']").toolbar();
         Con.getCourses();
         app.initialize();
         //Con.login(); We are not login from ilv_Connect
@@ -91,6 +91,7 @@ under the License.
 
     <div data-role="page" id="course-details-page">
       <div data-role="header" data-theme="b">
+        <a href="#courses-page" data-icon="back" data-role="button">Επιστροφή</a>
         <h1>Λεπτομέρειες Μαθήματος</h1>
       </div><!-- /header -->
       <div class="page-content">

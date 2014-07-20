@@ -57,3 +57,7 @@ dd {
 .page-content {
   padding: 1em;
 }
+
+.ui-header h1.ui-title {
+  font-size:18px;
+}

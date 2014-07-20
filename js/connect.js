@@ -41,7 +41,7 @@ function ilv__Connect() {
 	});
 
 
-	$("#courses-page .page-content").on("click", "a", function() {
+	$("#courses-page .page-content").on("click", "a", function(event) {
 		var clickedCourse = $(this).attr("id").substring(7);
 		//console.log(clickedCourse);
 			$course = $.grep(subject._ilv__courselist, function(obj) {
