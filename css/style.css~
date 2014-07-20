@@ -61,4 +61,8 @@ dd {
 .popup_login_window {
     padding : 20px 20px;
 }
+
+.vertical_middle {
+    vertical-align : middle;
+}
    

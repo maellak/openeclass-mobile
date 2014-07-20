@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css" />
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/connect.js"></script>
+
+    <script type="text/javascript">
+		$(document).on("pageinit", function() {
+			var Con = new ilv__Connect();
+			Con.checkConnect();
+			Con.getCourses();
+			app.initialize();
+			//Con.login(); We are not login from ilv_Connect
+		});
+    </script>
+
+    <meta name="msapplication-tap-highlight" content="no" />
+    <title>Hello World</title>
+  </head>
+  <body>
+    <div class="ui-panel-wrapper">
+      <div class="ui-header ui-bar-inherit" data-role="header" role="banner"><img class="logo" src="logo.png" />
+      </div>
+      <br>
+      <div class="ui-grid-c">
+        <div class="ui-block">
+          <div class="ui-bar ui-bar-a">
+            <p>
+              <span class="pt14">Αρχική Σελίδα</span>
+            </p>
+          </div>
+        </div>
+<<<<<<< HEAD
+    </div>
+</div>
+
+<div class="generalDescription">
+            <p><span class="pt13">Η πλατφόρμα <strong>Open eClass</strong> είναι ένα ολοκληρωμένο Σύστημα Διαχείρισης Ηλεκτρονικών Μαθημάτων για την ηλεκτρονική οργάνωση, αποθήκευση και παρουσίαση του εκπαιδευτικού υλικού. Αποτελεί την πρόταση του Ακαδημαϊκού Διαδικτύου GUnet για την υποστήριξη των Υπηρεσιών Ασύγχρονης Τηλεκπαίδευσης. Βασική επιδίωξη της πλατφόρμας είναι η ενσωμάτωση των νέων τεχνολογιών και η εποικοδομητική χρήση του διαδικτύου στην εκπαιδευτική διαδικασία. Βασίζεται στη φιλοσοφία του λογισμικού ανοικτού κώδικα, υποστηρίζεται ενεργά από το GUnet και διανέμεται ελεύθερα.</span></p>
+</div>
+
+
+
+</div>
+
+<br>
+<br>
+<br>
+
+</br>
+</br></br>
+
+
+
+<div id="leftpanel1" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-a ui-panel-animate ui-panel-closed" data-theme="a" data-display="overlay" data-position="left" data-role="panel">
+<div id="malakies" class="ui-panel-inner">
+
+
+</div>
+
+<div class="closeButton"><a class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" data-rel="close" href="#demo-links">Έξοδος</a></div>
+</div>
+
+
+<div id="leftpanel2" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-a ui-panel-animate ui-panel-closed" data-theme="a" data-display="overlay" data-position="left" data-role="panel">
+<div id="malakies2" class="ui-panel-inner">
+
+
+</div>
+<div class="closeButton"><a class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" data-rel="close" href="#demo-links">Έξοδος</a></div>
+
+</div>
+
+<div id="leftpanel3" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-a ui-panel-animate ui-panel-closed" data-theme="a" data-display="overlay" data-position="left" data-role="panel">
+<div id="malakies3" class="ui-panel-inner">
+
+
+</div>
+<div class="closeButton"><a class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" data-rel="close" href="#demo-links">Έξοδος</a></div>
+
+</div>
+
+
+<div id="rightpanel1" class="ui-panel ui-panel-position-right ui-panel-display-reveal ui-body-a ui-panel-animate ui-panel-closed" data-theme="a" data-display="overlay" data-position="right" data-role="panel">
+<div class="ui-panel-inner">
+<h2>Σύνδεση χρήστη </h2>
+<br>
+<form id="loginForm">
+    <div class="pt14">
+    Όνομα χρήστη (username) </span> <input id="uname" type="text" name="uname" placeholder="username"><br>
+    Συνθηματικό (password)  <input id="pass" type="password" name="pass" placeholder="password"><br>
+    <button id="submit">Είσοδος</button>
+    </div>
+</form>
+<br><br>
+<div class="closeButton"><a class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" data-rel="close" href="#demo-links">Έξοδος</a></div>
+</div>
+</div>
+=======
+      </div>
+>>>>>>> 6b89a6dbfc0004b2b8bf4661d26e0b5f7a994a22
+
+      <div class="generalDescription">
+        <p>
+          <span class="pt13">Η πλατφόρμα <strong>Open eClass</strong> είναι ένα ολοκληρωμένο Σύστημα Διαχείρισης Ηλεκτρονικών Μαθημάτων για την ηλεκτρονική οργάνωση, αποθήκευση και παρουσίαση του εκπαιδευτικού υλικού. Αποτελεί την πρόταση του Ακαδημαϊκού Διαδικτύου GUnet για την υποστήριξη των Υπηρεσιών Ασύγχρονης Τηλεκπαίδευσης. Βασική επιδίωξη της πλατφόρμας είναι η ενσωμάτωση των νέων τεχνολογιών και η εποικοδομητική χρήση του διαδικτύου στην εκπαιδευτική διαδικασία. Βασίζεται στη φιλοσοφία του λογισμικού ανοικτού κώδικα, υποστηρίζεται ενεργά από το GUnet και διανέμεται ελεύθερα.</span>
+        </p>
+      </div>
+    </div>
+
+    <div id="leftpanel1" class="ui-panel ui-panel-position-left ui-panel-display-reveal ui-body-a ui-panel-animate ui-panel-closed" data-theme="a" data-display="overlay" data-position="left" data-role="panel">
+      <div id="courses-list" class="ui-panel-inner">
+
+<<<<<<< HEAD
+<div class="ui-footer ui-bar-a ui-footer-fixed slideup" data-theme="a" data-position="fixedFooter" data-role="footer" role="contentinfo">
+<div class="ui-navbar" data-role="navbar" role="navigation">
+<ul class="ui-grid-c">
+<li class="ui-block-a">
+<a class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini" href="#rightpanel1">Σύνδεση</a>
+
+</li>
+<li class="ui-block-b">
+<a class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini" href="#leftpanel1">Μαθήματα</a>
+</li>
+</li>
+<li class="ui-block-c">
+<a class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini" href="#leftpanel2">Ανακοινώσεις</a>
+=======
+      </div>
+      <a class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" data-rel="close" href="#demo-links">Close panel</a>
+    </div>
+
+    <div id="rightpanel1" class="ui-panel ui-panel-position-right ui-panel-display-reveal ui-body-a ui-panel-animate ui-panel-closed" data-theme="a" data-display="overlay" data-position="right" data-role="panel">
+      <div class="ui-panel-inner">
+        <h1>Login form</h1>
+        <br>
+        <br>
+        <form id="loginForm">
+
+          <div class="pt14">
+            Username:</span>
+            <input id="uname" type="text" name="uname" placeholder="Username">
+            <br>
+            Password:
+            <input id="pass" type="password" name="pass" placeholder="Password">
+            <br>
+            <button id="submit">
+              Login
+            </button>
+          </div>
+        </form>
+        <br>
+        <br>
+        <div class="closeButton">
+          <a class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left ui-btn-inline" data-rel="close" href="#demo-links">Close</a>
+        </div>
+      </div>
+    </div>
+>>>>>>> 6b89a6dbfc0004b2b8bf4661d26e0b5f7a994a22
+
+    <div class="ui-footer ui-bar-a ui-footer-fixed slideup" data-theme="a" data-position="fixed" data-role="footer" role="contentinfo">
+      <div class="ui-navbar" data-role="navbar" role="navigation">
+        <ul class="ui-grid-c">
+          <li class="ui-block-a">
+            <a class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini" href="#rightpanel1">Login</a>
+
+          </li>
+          <li class="ui-block-b">
+            <a class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini" href="#leftpanel1">Courses</a>
+          </li>
+          </li>
+          <li class="ui-block-c">
+            <a class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini" href="#leftpanel1">Announcements</a>
+
+          </li>
+          <li class="ui-block-d">
+            <a class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-mini" href="#leftpanel1">Forum</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    </div >
+
+  </body>
+</html>
+

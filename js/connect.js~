@@ -79,7 +79,7 @@ function ilv__Connect() {
 		subject.login();
 		$.mobile.loading('hide');
 		//Hide the jQuery mobile loader that automatically appears
-         	$("#popupLogin").popup("close");
+         	$("popupLogin").popup("close");
 	});
 
 };

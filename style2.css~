@@ -1,0 +1,24 @@
+#content,#sidebar {
+    line-height: 300px;
+    text-align: center;
+    border: 1px solid;
+}
+ 
+#sidebar {
+    background-color: #DEF;
+    border-color: #BCD;
+    display: none;
+}
+#content {
+    background-color: #EFE;
+    border-color: #CDC;
+}
+ 
+.use-sidebar #content {width: 65%;}
+.use-sidebar #sidebar {
+    display: block;
+    width: 32%;
+}
+ 
+/* .use-sidebar.sidebar-at-left #content, .use-sidebar.sidebar-at-right #sidebar {float: right;} */
+.use-sidebar.sidebar-at-right #content, .use-sidebar.sidebar-at-left #sidebar {float: left;}
