@@ -246,7 +246,7 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 				   	//alert(clickedCourse);
 				   	subject.sendAnnouncementRead(clickedAnnouncement);
 				   	console.log(this);
-				   	$(this).children("a").addClass("announcement-read");
+				   	$(this).addClass("announcement-read");
 				   }
 				});
 				
