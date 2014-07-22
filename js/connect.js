@@ -17,7 +17,7 @@ function ilv__Connect() {
 		$("#popupLogin #pass").val(localStorage.pass);
 		//Fill in the #pass input field with the localStorage value
 	}
-	
+
 	if (!(localStorage.getItem("url") === null)) {//Check if there is already a username saved in localStorage.pass
 		$("#popupLogin #url").val(localStorage.url);
 		//Fill in the #pass input field with the localStorage value
@@ -35,14 +35,14 @@ function ilv__Connect() {
 	$("#page-title p span").html("Ανακοινώσεις");
 		subject._ilv_action = "announcements";
 		subject.getAnnouncements(null);
-		
+
 	});
 
 	$("#forum-btn").click(function() {
 		subject._ilv_action = "forums";
 	});
-	
-	
+
+
 	$(".ui-header .logo").click(function() {
 		$("#page-title p span").html("Αρχική Σελίδα");
 		$("#page-content").html('<p><span class="pt13">Η πλατφόρμα <strong>Open eClass</strong> είναι ένα ολοκληρωμένο Σύστημα Διαχείρισης Ηλεκτρονικών Μαθημάτων για την ηλεκτρονική οργάνωση, αποθήκευση και παρουσίαση του εκπαιδευτικού υλικού. Αποτελεί την πρόταση του Ακαδημαϊκού Διαδικτύου GUnet για την υποστήριξη των Υπηρεσιών Ασύγχρονης Τηλεκπαίδευσης. Βασική επιδίωξη της πλατφόρμας είναι η ενσωμάτωση των νέων τεχνολογιών και η εποικοδομητική χρήση του διαδικτύου στην εκπαιδευτική διαδικασία. Βασίζεται στη φιλοσοφία του λογισμικού ανοικτού κώδικα, υποστηρίζεται ενεργά από το GUnet και διανέμεται ελεύθερα.</span></p>');
@@ -78,12 +78,12 @@ function ilv__Connect() {
 			$("#leftpanel1").panel( "close" );
 		}
 	});
-	
+
 	$("#page-content").on("click", "a", function() {
-	        if( $(this).attr("id").substring(0,4)=="ann-"){	
+	        if( $(this).attr("id").substring(0,4)=="ann-"){
 				var clickedbutton = $(this).attr("id").substring(4);
 				subject.getAnnouncements(clickedbutton);
-			}	
+			}
 			else if( $(this).attr("id").substring(0,4)=="doc-"){
 				var clickedbutton = $(this).attr("id").substring(4);
 				subject.getDocuments(clickedbutton);
@@ -94,8 +94,7 @@ function ilv__Connect() {
 				//subject.getForum(clickedbutton);
 				alert("forum");
 			}
-		
-		
+
 	});
 
 	$("#popupLogin #submit").click(function(event) {
@@ -184,30 +183,6 @@ ilv__Connect.prototype.getCourses = function() {
 	});
 };
 
-/*
-ilv__Connect.prototype.checkConnect = function() {
-	var url = "http://snf-538265.vm.okeanos.grnet.gr/modules/rest/courses"
-	$.ajax({
-		url : url,
-		crossDomain : true,
-		type : 'GET',
-		timeout : 5000,
-		contentType : "application/json;charset=utf-8",
-		success : function(data) {
-			//alert("ok");
-		},
-		error : function(request) {
-			// alert(request.responseText);
-			// alert(request.status);
-			if (request.status == 0) {
-				//alert("papala");
-			}
-
-		}
-	});
-};
-*/
-
 ilv__Connect.prototype.getAnnouncements = function(course) {
 	var subject = this;
 	if (course === null) {
@@ -233,18 +208,18 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 				if (k.visible == null) {
 					k.visible = 0;
 				}
-				
+
 				datatheme = "b";
 				if (k.visible ==1) {
 					datatheme = "a";
 				}
-				
-				
+
+
 				if (course === null) {
 					announcementList += '<div class="announcement-item" id="announcement-'+ k.id  + '" data-role="collapsible" data-theme="'+ datatheme +'" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +k.courseTitle+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
 				} else {
 					announcementList += '<div class="announcement-item" id="announcement-'+ k.id  + '" data-role="collapsible" data-theme="'+ datatheme +'" data-content-theme="a"><h4>' + k.title +'</h4><dt>Μάθημα</dt><dd>' +subject._ilv__enrolledcourse+'</dd><dt>Ημερομηνία</dt><dd>' + k.date + '</dd><dt>Περιεχόμενο</dt><dd>' + k.content + '</dd></div>';
-		
+
 				}
 					});
 			announcementList += "</div>";
@@ -258,7 +233,7 @@ ilv__Connect.prototype.getAnnouncements = function(course) {
 				   	$(this).addClass("announcement-read");
 				   }
 				});
-				
+
 		},
 		error : function(xhr, status, error) {
 			alert("Could not get announcements");
@@ -291,7 +266,7 @@ ilv__Connect.prototype.sendAnnouncementRead = function(annID) {
 ilv__Connect.prototype.getDocuments = function(course) {
 	var subject = this;
 	var annUrl = subject._ilv__wsite + "/modules/rest/courses/" + course + "/documents";
-	
+
 	//alert(this._token);
 	var postdata = {
 		"access_token" : subject._ilv__token
@@ -312,10 +287,75 @@ ilv__Connect.prototype.getDocuments = function(course) {
 					});
 			documentList += "</div>";
 			$("#page-content").html(documentList).trigger("create");
-				
+
 		},
 		error : function(xhr, status, error) {
 			alert("Could not get announcements");
 		}
 	});
+};
+
+ilv__Connect.prototype.getForum = function(course) {
+  var subject = this;
+  var forumurl = subject._ilv__wsite + "/modules/rest/courses/" + course + "/forums"
+  var postdata = {
+      "access_token" : subject._ilv__token
+    };
+  $.ajax({
+    url : forumurl,
+    type : "GET",
+    crossDomain : true,
+    data : postdata,
+    contentType : "application/json; charset=utf-8",
+    dataType : "json",
+    success : function(result) {
+      var forumList = '<div id="forums">';
+      $.each(result, function(i, k) {
+        forumList += '<div id="'+ k.id  + '" data-role="collapsible" data-theme="b" data-content-theme="a"><h4>' + k.name + '</h4>';
+        forumList += '<div id="topics' + k.id + '"></div>';
+        $.ajax({
+          url : forumurl + "/" + k.id + "/topics",
+          type : "GET",
+          crossDomain : true,
+          data : postdata,
+          contentType : "application/json; charset=utf-8",
+          dataType : "json",
+          success : function(result) {
+            var topicList = $('<div id="topics"></div>');
+            $.each(result, function(j, m) {
+              topicList.append($('<div id="'+ m.id +'" data-role="collapsible" data-theme="c" data-content-theme="c"><h3>' + m.title + '</h3><div class="inner'+m.id+'"></div></div>'));
+              topicList.find('div[data-role=collapsible]').collapsible({refresh:true});
+              $.ajax({
+                url : forumurl + "/" + k.id + "/topics/" + m.id + "/posts",
+                type : "GET",
+                crossDomain : true,
+                data : postdata,
+                contentType : "application/json; charset=utf-8",
+                dataType : "json",
+                success : function(result) {
+                  var element = '';
+                  $.each(result, function(v, t) {
+                    $('<div><p style="font-weight:bold">Μήνυμα από '+subject._ilv__user + '</p><p>Στάλθηκε: '+ t.post_time + '</p><p>'+t.post_text+'</p><hr/>').appendTo($('.inner'+m.id));
+                  });
+                },
+                error : function(xhr, status, error) {
+                  alert("Could not get posts");
+                }
+              });
+            });
+            $('#topics' + k.id).append($(topicList));
+          },
+          error : function(xhr, status, error) {
+            alert("Could not get topics");
+          }
+        });
+        forumList += '</div>';
+      });
+      forumList += '</div>';
+      $("#page-content").html(forumList).trigger("create");
+    },
+    error : function(xhr, status, error) {
+      alert("Could not get forums");
+    }
+  });
 };
